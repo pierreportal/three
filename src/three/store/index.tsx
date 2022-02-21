@@ -7,7 +7,7 @@ const setLocalStorage = (key: string, value: any) => window.localStorage.setItem
 
 const plateformElement = {
     label: 'plateform',
-    dimensions: [1, 1, 1],
+    dimensions: [2, 1, 2],
     defaultTexture: Textures.metal,
     textureChoice: [Textures.metal, Textures.pinkMetal]
 };
@@ -25,6 +25,8 @@ export const availableElements = {
 }
 
 export const useStore = create((set: any) => ({
+
+    playerPosition: { pos: [0, 1, 0], rotationFactor: 0 },
 
     createModeGostRotationIndex: 0,
 
@@ -54,6 +56,8 @@ export const useStore = create((set: any) => ({
             }
         })
     ),
+
+    changePlayerRotation: (rotationFactor: number) => set((state: any) => ({ ...state, playerPosition: { ...state.playerPosition, rotationFactor } })),
 
     changeCreateModeGostRotationIndex: () => set((state: any) => ({ ...state, createModeGostRotationIndex: (state.createModeGostRotationIndex + 1) % 4 })),
 
